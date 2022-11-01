@@ -48,8 +48,8 @@ for file in os.listdir("Database/Real"):
 
 print(f"Matching fingerprint: {best_file_name}")
 print(f"Percentage match: {best_percent*100}%")
-match = cv.drawMatches(sample_image, kp1, file_image, kp2, mp, None)
-resized_match = cv.resize(match, None, fx=4, fy=4)
-cv.imshow("Match", resized_match)
+img = cv.drawMatches(sample_image, kp1, file_image, kp2, mp, None)
+resized_img = cv.resize(img, None, fx=6, fy=6)
+cv.imshow("Match", resized_img)
 cv.waitKey(0)
 cv.destroyAllWindows()
