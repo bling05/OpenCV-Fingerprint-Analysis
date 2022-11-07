@@ -29,8 +29,7 @@ for file in os.listdir("Database/Real"):
     matches = flann_matcher.knnMatch(sample_descriptors, file_descriptors, k=2) 
 
     THRESHOLD = 0.15
-    # Adds the key point to the list and considers it relevant ONLY IF both keypoints are within 
-    # a certain threshold distance from a certain point.
+    # Adds the key point to the list and considers it relevant ONLY IF the keypoint descriptors match given a certain threshold.
     # In short, if the key points of the sample and current file match, adds the key point to a list to work with later.
     match_keypoints = [sample_kp for (sample_kp, file_kp) in matches if (sample_kp.distance < THRESHOLD * file_kp.distance)]
 
