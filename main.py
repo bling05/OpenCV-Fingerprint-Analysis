@@ -9,7 +9,7 @@ best_percent = 0
 best_file_name = None
 best_image = None
 
-# Using SIFT (Scale Invariant Fourier Transform), creates a map of keypoints in both 
+# Using SIFT (Scale Invariant Feature Transform), creates a map of keypoints in both 
 # the sample and the potential match's images.
 sift = cv.SIFT_create() 
 sample_keypoints, sample_descriptors = sift.detectAndCompute(sample_image, None)
@@ -23,9 +23,9 @@ for file in os.listdir("Database/Real"):
     file_keypoints, file_descriptors = sift.detectAndCompute(file_image, None)
     print(file)
 
-    # Creates a FLANN matcher using the KD tree algorithm and finds nearest neighbors for keypoints.
+    # Creates a FLANN matcher using the KD tree algorithm.
     flann_matcher = cv.FlannBasedMatcher({'algorithm': 1, 'trees': 10}, {}) 
-    # Applies keypoint descriptors to matches made by FLANN.
+    # Uses the FLANN matcher to determine matching keypoints.
     matches = flann_matcher.knnMatch(sample_descriptors, file_descriptors, k=2) 
 
     THRESHOLD = 0.15
